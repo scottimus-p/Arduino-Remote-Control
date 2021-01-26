@@ -98,9 +98,9 @@ void Action::performAction()
   *  more flexible.
   *****************************************************************************/
   delayMicroseconds(ENDING_1 - PAUSE_LENGTH);
-  //pulseIR(ENDING_2);
+  pulseIR(ENDING_2);
   delayMicroseconds(ENDING_3);
-  //pulseIR(ENDING_4);
+  pulseIR(ENDING_4);
 
   return;
 }
