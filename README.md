@@ -11,7 +11,7 @@ Fortunately for me, it will work with my Toshiba TV. Unfortunately for you, it s
 - 5mm IR LED (940nm wavelength) - https://www.adafruit.com/product/387  
 - 1 kOhm resistor*
 
-* A different resistor may work better by providing a "brighter" (humans can't actually see infrared light) light
+\* A different resistor may work better by providing a "brighter" (humans can't actually see infrared light) light
 
 ### Instructions ###
 1. To change the buttons, modify the constructor for `RemoteControl` in `RemoteControl.cpp`. It should be pretty obvious what to change. The constructor for each `Button` has the coordinates for the button's position, the text displayed on the button and the color. A few lines below that are the sequences for defining the IR pulses that are transmitted when the button is pushed.
