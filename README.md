@@ -6,10 +6,10 @@ This project is a remote control using a touchscreen interface made using an Ard
 Fortunately for me, it will work with my Toshiba TV. Unfortunately for you, it sends signals only compatible with my Toshiba TV. Modifications can be made to work with your TV, stereo, VCR...pretty much any consumer electronic device that uses infrared-based remote controls.
  
 ### Components ###
-Arduino Uno - https://www.adafruit.com/product/50  
-Adafruit 2.8" TFT Capacitive Touch Shield - https://www.adafruit.com/product/1947  
-5mm IR LED (940nm wavelength) - https://www.adafruit.com/product/387  
-1 kOhm resistor
+- Arduino Uno - https://www.adafruit.com/product/50  
+- Adafruit 2.8" TFT Capacitive Touch Shield - https://www.adafruit.com/product/1947  
+- 5mm IR LED (940nm wavelength) - https://www.adafruit.com/product/387  
+- 1 kOhm resistor
 
 ### Instructions ###
 1. To change the buttons, modify the constructor for `RemoteControl` in `RemoteControl.cpp`. You'll add a new instance of `Button` for any new buttons, or modify existing buttons.
