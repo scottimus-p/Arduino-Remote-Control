@@ -24,7 +24,7 @@ Fortunately for me, it will work with my Toshiba TV. Unfortunately for you, it s
 ### IR Pulsing ###
 Each signal is consists of the following sequence:  
 1. An intro sequence where the IR led is `ON` for approximately 9440 microseconds followed by an `OFF` for approximately 4660 microseconds. This lets the device know to start listening. Think of it as the "Hey Google" or "Hey Siri" for your device.
-2. A sequence of `ON` and `OFF` pulses which define the command. `ON`s are represented by a `1` in the command sequence and `OFF`s are represented by a `0`. Each `1` and `0` 760 microseconds is separated from the preceding `1` or `0` by 380 microseconds.
+2. A sequence of `ON` and `OFF` pulses which define the command. `ON`'s are represented by a `1` in the command sequence and `OFF`'s are represented by a `0`. Each `1` and `0` has a duration of 760 microseconds and is separated from the preceding `1` or `0` by 380 microseconds.
 3. An exit sequence which tells the device it can stop listening. The exit sequence consists of an `OFF` for approximately 41200 microseconds, followed by an `ON` for 9420 microseconds, an `OFF` for 2120 microseconds and one final `ON` for 760 microseconds.
 
-Each `ON` pulse is not a continuous flash of IR. Rather it is itself a high-frequency pulsing of IR light occuring at 38 kHz.
+Note that each `ON` pulse is not a continuous flash of IR light. Rather it is itself a high-frequency pulsing of IR light occuring at 38 kHz.
