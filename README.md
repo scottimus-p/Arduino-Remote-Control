@@ -19,7 +19,7 @@ Fortunately for me, it will work with my Toshiba TV. Unfortunately for you, it s
 3. Upload the code in the `ArduinoRemoteControl.ino` sketch along with the rest of the `.cpp` and `.h` files to your Arduino.
 4. Assemble the components according to the diagram below, power on the Arduino and you're all set. The LED should be hooked up to pin 30 unless the `#define` for `LED_PIN` is changed in `Action.h`.
 
-![Arduino Remote Diagram](https://github.com/scottimus-p/arduino-remote-control/blob/main/Arduino-Remote.png | width=250)
+<img src="https://github.com/scottimus-p/arduino-remote-control/blob/main/Arduino-Remote.png" width="450">
 
 ### IR Pulsing ###
 Each signal is consists of the following sequence:  
