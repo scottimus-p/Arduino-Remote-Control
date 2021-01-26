@@ -151,3 +151,16 @@ void Button::setActionSequence(uint8_t *sequence, int bytes)
 {
   buttonAct.setSequence(sequence, bytes);
 }
+
+
+/*******************************************************************************
+ * Function: performActionSequence
+ * Return Value: n/a
+ * Description: Executes the sequence of pulses for the action.
+ * 
+ * Parameters:  none
+  ******************************************************************************/
+  void Button::performActionSequence()
+  {
+    buttonAct.performAction();
+  }

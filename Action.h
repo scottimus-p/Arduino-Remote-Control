@@ -20,7 +20,7 @@
 #define PULSE_LENGTH 760    // Each bit in the signal is represented by either being on or off for this many usec
 #define PAUSE_LENGTH 380    // Each bit is separated by this many usec
 #define SWITCH_DURATION 3   // It takes 3 microseconds to switch on/off the LED
-#define LED_PIN 3           // The pin that the IR LED is hooked up to
+#define LED_PIN 30          // The pin that the IR LED is hooked up to
 #define FREQUENCY 38        // The frequency of the IR pulse in kHz
 
 class Action

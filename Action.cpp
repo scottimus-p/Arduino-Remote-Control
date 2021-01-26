@@ -61,6 +61,8 @@ void Action::setSequence(uint8_t *sequence, int bytes)
   ******************************************************************************/
 void Action::performAction()
 {
+    Serial.print(sequenceBytes);
+    
   // First check that we've set a sequence
   if (hexCode == nullptr)
   {
@@ -78,14 +80,13 @@ void Action::performAction()
   delayMicroseconds(INTRO_2);
   pulseIR(PULSE_LENGTH);
 
-
   // Send the main signal
   for (int i = 0; i < sequenceBytes; i++)
   {
     // Pulse the LED if a 1 otherwise leave it off for a 0
     if (((hexCode[i] >> i) & 1) == 1)
     {
-      pulseIR(PULSE_LENGTH);
+      //pulseIR(PULSE_LENGTH);
     }
 
     // Pause in between the bits
@@ -97,9 +98,9 @@ void Action::performAction()
   *  more flexible.
   *****************************************************************************/
   delayMicroseconds(ENDING_1 - PAUSE_LENGTH);
-  pulseIR(ENDING_2);
+  //pulseIR(ENDING_2);
   delayMicroseconds(ENDING_3);
-  pulseIR(ENDING_4);
+  //pulseIR(ENDING_4);
 
   return;
 }
@@ -121,8 +122,8 @@ void Action::performAction()
  // for a certain # of microseconds.
 
   // The length of the pulse, from beginning to end, in microseconds
-  int pulseLength = 1 / FREQUENCY * 1000;
-  int pauseLength = pulseLength / 2 - SWITCH_DURATION;
+  int pulseLength = 1. / FREQUENCY * 1000;
+  int pauseLength = pulseLength / 2. - SWITCH_DURATION;
 
   
   cli();  // this turns off any background interrupts

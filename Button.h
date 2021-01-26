@@ -40,6 +40,7 @@ public:
 	void flipColor();
   bool inButton(int x, int y);
   void setActionSequence(uint8_t *sequence, int bytes); // Sounds exciting!!!
+  void performActionSequence();
 
 };
 
