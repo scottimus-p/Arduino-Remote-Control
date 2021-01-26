@@ -86,7 +86,7 @@ void Action::performAction()
     // Pulse the LED if a 1 otherwise leave it off for a 0
     if (((hexCode[i] >> i) & 1) == 1)
     {
-      //pulseIR(PULSE_LENGTH);
+      pulseIR(PULSE_LENGTH);
     }
 
     // Pause in between the bits
