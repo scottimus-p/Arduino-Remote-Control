@@ -11,14 +11,14 @@
 
 #include "Arduino.h"
 
-#define INTRO_1 9440        // IR LED should be on for this many microseconds in the intro section
-#define INTRO_2 4660        // IR LED should be off for this many microseconds in the intro section
+#define INTRO_1 9000        // IR LED should be on for this many microseconds in the intro section
+#define INTRO_2 4400        // IR LED should be off for this many microseconds in the intro section
 #define ENDING_1 41200      // IR exit sequence
 #define ENDING_2 9420       // IR exit sequence
 #define ENDING_3 2100       // IR exit sequence
 #define ENDING_4 760        // IR exit sequence
-#define PULSE_LENGTH 760    // Each bit in the signal is represented by either being on or off for this many usec
-#define PAUSE_LENGTH 380    // Each bit is separated by this many usec
+#define PULSE_LENGTH 620    // Each bit in the signal is represented by either being on or off for this many usec
+#define PAUSE_LENGTH 480    // Each bit is separated by this many usec
 #define SWITCH_DURATION 3   // It takes 3 microseconds to switch on/off the LED
 #define LED_PIN 30          // The pin that the IR LED is hooked up to
 #define FREQUENCY 38        // The frequency of the IR pulse in kHz

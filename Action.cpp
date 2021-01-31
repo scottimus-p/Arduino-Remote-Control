@@ -79,14 +79,24 @@ void Action::performAction()
   pulseIR(INTRO_1);
   delayMicroseconds(INTRO_2);
   pulseIR(PULSE_LENGTH);
+  delayMicroseconds(PAUSE_LENGTH);
+  pulseIR(PULSE_LENGTH);
+  delayMicroseconds(PAUSE_LENGTH);
 
   // Send the main signal
-  for (int i = 0; i < sequenceBytes; i++)
+  for (int i = 0; i < sequenceBytes * 8; i++)
   {
+    int byteNum = i / 8;
+    int bitNum = 7 - i % 8;
+    
     // Pulse the LED if a 1 otherwise leave it off for a 0
-    if (((hexCode[i] >> i) & 1) == 1)
+    if (((hexCode[/*i*/byteNum] >> /*i*/ bitNum) & 1) == 1)
     {
       pulseIR(PULSE_LENGTH);
+    }
+    else
+    {
+      delayMicroseconds(PULSE_LENGTH);
     }
 
     // Pause in between the bits
@@ -122,7 +132,7 @@ void Action::performAction()
  // for a certain # of microseconds.
 
   // The length of the pulse, from beginning to end, in microseconds
-  int pulseLength = 1. / FREQUENCY * 1000;
+  int pulseLength = 1000. / FREQUENCY;
   int pauseLength = pulseLength / 2. - SWITCH_DURATION;
 
   
@@ -136,7 +146,7 @@ void Action::performAction()
     delayMicroseconds(pauseLength);
 
     // so 26 microseconds altogether
-    microsecs -= PULSE_LENGTH;
+    microsecs -= pulseLength; //PULSE_LENGTH;
   }
 
    sei();  // this turns them back on

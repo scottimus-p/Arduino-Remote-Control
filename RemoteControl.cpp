@@ -38,22 +38,24 @@ RemoteControl::RemoteControl() : tft(TFT_CS, TFT_DC)
   uint16_t intColorActive = activeColor.convertColor();
  
   power       = Button(POWER_X, POWER_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "POWER", intColorInactive, intColorActive, &tft);
-  channelUp   = Button(CHANNEL_UP_X, CHANNEL_UP_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "UP", intColorInactive, intColorActive, &tft);
-  channelDown = Button(CHANNEL_DOWN_X, CHANNEL_DOWN_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "DOWN", intColorInactive, intColorActive, &tft);
+  tuner       = Button(TUNER_X, TUNER_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "TUNER", intColorInactive, intColorActive, &tft);
+  tv          = Button(TV_X, TV_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "TV", intColorInactive, intColorActive, &tft);
+  phono       = Button(PHONO_X, PHONO_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "PHONO", intColorInactive, intColorActive, &tft);
   volumeUp    = Button(VOLUME_UP_X, VOLUME_UP_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "UP", intColorInactive, intColorActive, &tft);
   volumeDown  = Button(VOLUME_DOWN_X, VOLUME_DOWN_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "DOWN", intColorInactive, intColorActive, &tft);
-  input       = Button(INPUT_X, INPUT_Y, BUTTON_HEIGHT, BUTTON_WIDTH, "INPUT", intColorInactive, intColorActive, &tft);
 
-  uint8_t powerSequence[6]       = {0xFD, 0xAA, 0xAD, 0xBB, 0xDA, 0xD5};
-  uint8_t channelDownSequence[6] = {0xFD, 0xAA, 0xAA, 0x55, 0x7F, 0xD5};
-  uint8_t channelUpSequence[6]   = {0xFD, 0xAA, 0xAD, 0x5A, 0xFD, 0xD5};
-  uint8_t volumeDownSequence[6]  = {0xFD, 0xAA, 0xAD, 0xAA, 0xF7, 0xD5};
-  uint8_t volumeUpSequence[6]    = {0xFD, 0xAA, 0xAD, 0xB5, 0xED, 0xD5};
+  uint8_t powerSequence[6]       = {0x76, 0xBA, 0xD6, 0xB7, 0x5D, 0xAD};
+  uint8_t tunerSequence[6]       = {0x76, 0xAD, 0x6B, 0x5B, 0xFB, 0x55};
+  uint8_t tvSequence[6]          = {0x76, 0xAD, 0x6B, 0xEF, 0xAB, 0x55};
+  uint8_t phonoSequence[6]       = {0x76, 0xAD, 0x6B, 0xB7, 0xDB, 0x55};
+  uint8_t volumeDownSequence[6]  = {0x76, 0xAD, 0x6B, 0x5F, 0xF5, 0x55};
+  uint8_t volumeUpSequence[6]    = {0x76, 0xAD, 0x6B, 0xBF, 0xB5, 0x55};
   
   
   power.setActionSequence(powerSequence, 6);
-  channelUp.setActionSequence(channelUpSequence, 6);
-  channelDown.setActionSequence(channelDownSequence, 6);
+  tuner.setActionSequence(tunerSequence, 6);
+  tv.setActionSequence(tvSequence, 6);
+  phono.setActionSequence(phonoSequence, 6);
   volumeUp.setActionSequence(volumeUpSequence, 6);
   volumeDown.setActionSequence(volumeDownSequence, 6);
 
@@ -93,32 +95,32 @@ void RemoteControl::draw()
   
   // Draw the buttons
   power.drawButton();
-  channelUp.drawButton();
-  channelDown.drawButton();
+  tuner.drawButton();
+  tv.drawButton();
   volumeUp.drawButton();
   volumeDown.drawButton();
-  input.drawButton();
+  phono.drawButton();
 
   // Calculate the dimensions of the labels so they can be centered above the buttons
   int16_t x1, y1;
   uint16_t w, h;
-  int channelTextWidth, channelTextHeight, volumeTextWidth, volumeTextHeight;
-  tft.getTextBounds("Channel", 0, 0, &x1, &y1, &w, &h);
-  channelTextWidth = w;
-  tft.getTextBounds("Channel", 0, 0, &x1, &y1, &w, &h);
+  int inputsTextWidth, inputsTextHeight, volumeTextWidth, volumeTextHeight;
+  tft.getTextBounds("Inputs", 0, 0, &x1, &y1, &w, &h);
+  inputsTextWidth = w;
+  tft.getTextBounds("Volume", 0, 0, &x1, &y1, &w, &h);
   volumeTextWidth = w;
   
   // Calculate the locations of the labels so they're centered above the buttons
-  int xCoordChannel = CHANNEL_UP_X + BUTTON_WIDTH / 2 - channelTextWidth / 2;
-  int yCoordChannel = CHANNEL_UP_Y - 10;
-  int xCoordVolume = VOLUME_UP_X + BUTTON_WIDTH / 2 - volumeTextWidth / 2;
+  int xCoordInputs = (TV_X + TUNER_X + BUTTON_WIDTH) / 2 - inputsTextWidth / 2;
+  int yCoordInputs = TV_Y - 10;
+  int xCoordVolume = (VOLUME_UP_X + VOLUME_DOWN_X + BUTTON_WIDTH) / 2 - volumeTextWidth / 2;
   int yCoordVolume = VOLUME_UP_Y - 10;
   
   // Draw the labels above the channel and volume buttons
   tft.setCursor(xCoordVolume, yCoordVolume);
   tft.println("Volume");
-  tft.setCursor(xCoordChannel, yCoordChannel);
-  tft.println("Channel");
+  tft.setCursor(xCoordInputs, yCoordInputs);
+  tft.println("Inputs");
 }
 
 
@@ -163,19 +165,19 @@ void RemoteControl::loop()
       delay(BUTTON_DELAY);
       power.performActionSequence();
     }
-    else if (channelUp.inButton(p.x, p.y))
+    else if (tv.inButton(p.x, p.y))
     {
-      channelUp.flipColor();
-      lastButton = &channelUp;
+      tv.flipColor();
+      lastButton = &tv;
       delay(BUTTON_DELAY);
-      channelUp.performActionSequence();
+      tv.performActionSequence();
     }
-    else if (channelDown.inButton(p.x, p.y))
+    else if (tuner.inButton(p.x, p.y))
     {
-      channelDown.flipColor();
-      lastButton = &channelDown;
+      tuner.flipColor();
+      lastButton = &tuner;
       delay(BUTTON_DELAY);
-      channelDown.performActionSequence();
+      tuner.performActionSequence();
     }
     else if (volumeUp.inButton(p.x, p.y))
     {
@@ -191,11 +193,12 @@ void RemoteControl::loop()
       delay(BUTTON_DELAY);
       volumeDown.performActionSequence();
     }
-    else if (input.inButton(p.x, p.y))
+    else if (phono.inButton(p.x, p.y))
     {
-      input.flipColor();
-      lastButton = &input;
+      phono.flipColor();
+      lastButton = &phono;
       delay(BUTTON_DELAY);
+      phono.performActionSequence();
     }
     else
     {
