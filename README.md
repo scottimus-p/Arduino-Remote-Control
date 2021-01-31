@@ -4,8 +4,8 @@ A touchscreen remote control made using Arduino.
 This project is a remote control using a touchscreen interface made using an Arduino. A touchscreen was used to make the project more flexible so that the buttons could easily be added, removed or modified for different devices. The code uses several Adafruit libraries to handle the dirty work of controlling the touchscreen.
   
 Fortunately for me, it will work with my Onkyo TX-8260 stereo receiver. Unfortunately for you, it sends signals only compatible with my Onkyo receiver and not other electronics. Modifications can be made to work with your TV, stereo, VCR...pretty much any consumer electronic device that uses infrared-based remote controls.
-
- <img src="https://github.com/scottimus-p/arduino-remote-control/blob/main/Assembled-Remote.jpg" width="450">
+<br/><br/><br/>
+<img src="https://github.com/scottimus-p/arduino-remote-control/blob/main/Assembled-Remote.jpg" width="450">  
  
 ### Components ###
 - Arduino Mega - https://www.adafruit.com/product/191 
