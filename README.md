@@ -5,7 +5,7 @@ This project is a remote control using a touchscreen interface made using an Ard
   
 Fortunately for me, it will work with my Onkyo TX-8260 stereo receiver. Unfortunately for you, it sends signals only compatible with my Onkyo receiver and not other electronics. Modifications can be made to work with your TV, stereo, VCR...pretty much any consumer electronic device that uses infrared-based remote controls.
 
- <img src="https://github.com/scottimus-p/arduino-remote-control/blob/main/Assembled-Remote.png" width="450">
+ <img src="https://github.com/scottimus-p/arduino-remote-control/blob/main/Assembled-Remote.jpg" width="450">
  
 ### Components ###
 - Arduino Mega - https://www.adafruit.com/product/191 
